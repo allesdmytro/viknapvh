@@ -1,79 +1,390 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Майстерня м'яких вікон</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com">
+function calculateNew() {
+  const width = parseFloat(document.getElementById("width").value);
+  const height = parseFloat(document.getElementById("height").value);
+  const pricePerM2 = parseFloat(document.getElementById("type").value);
+
+  if (!isNaN(width) && !isNaN(height)) {
+    const area = width * height;
+    const total = area * pricePerM2;
+    document.getElementById("newResult").innerText = `Площа: ${area.toFixed(2)} м² | Вартість: ${total.toFixed(0)} грн`;
+  } else {
+    document.getElementById("newResult").innerText = "";
+  }
+}
+
+</script>
 </head>
 <body class="bg-white text-gray-800">
 
-  <header class="bg-blue-100 py-10 text-center">
-    <h1 class="text-4xl font-bold">Майстерня м'яких вікон</h1>
-    <p class="text-lg mt-2">Захистимо вашу альтанку від дощу і вітру</p>
-  </header>
+  
 
-  <section class="max-w-4xl mx-auto py-10 px-4">
-    <h2 class="text-2xl font-semibold mb-4">Галерея робіт</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      <img src="images/1.jpg" alt="Приклад 1" class="rounded shadow">
-      <img src="images/2.jpg" alt="Приклад 2" class="rounded shadow">
-      <img src="images/3.jpg" alt="Приклад 3" class="rounded shadow">
+<header class="bg-blue-100 py-4 px-4 md:px-8 shadow">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <img src="images/logo.jpg" alt="logo" class="w-10 h-10">
+      <span class="text-2xl font-bold">Майстерня м'яких вікон</span>
     </div>
-  </section>
+    <button id="menu-btn" class="md:hidden focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+    <nav id="mobile-menu" class="hidden md:flex md:items-center w-full md:w-auto mt-4 md:mt-0">
+      <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-lg font-medium">
+        <li><a href="#gallery" class="hover:text-blue-600">Галерея</a></li>
+        <li><a href="#calculator" class="hover:text-blue-600">Калькулятор</a></li>
+        <li><a href="#form" class="hover:text-blue-600">Заявка</a></li>
+        <li><a href="#contacts" class="hover:text-blue-600">Контакти</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <section class="max-w-2xl mx-auto py-10 px-4">
-    <h2 class="text-2xl font-semibold mb-4">Калькулятор вартості</h2>
-    <div class="space-y-4">
-      <input type="number" id="area" placeholder="Площа, м²" class="border p-2 w-full rounded" />
-      <button onclick="calculate()" class="bg-blue-600 text-white px-4 py-2 rounded">Розрахувати</button>
-      <p id="result" class="text-xl font-medium"></p>
+
+
+
+<div class="relative w-full max-h-[600px] overflow-hidden">
+  <img src="images/hero.jpg" alt="Головне зображення" class="w-full h-auto object-cover">
+
+  <!-- Верхній правий кут -->
+  <div class="absolute top-2 right-2 md:top-4 md:right-4 bg-white/80 text-xs md:text-base text-gray-800 px-2 md:px-3 py-1 rounded shadow max-w-[80%] text-right">
+    Термін експлуатації 5+ років
+  </div>
+
+  <!-- Нижній правий кут -->
+  <div class="absolute bottom-2 right-2 md:bottom-4 md:right-4 bg-blue-600 text-white text-xs md:text-lg px-3 md:px-4 py-1.5 md:py-2 rounded shadow max-w-[80%] text-right">
+    М'ЯКІ ВІКНА – телефонуй 0964520200
+  </div>
+
+  <!-- Текст посередині зліва -->
+  <div class="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 bg-white/80 text-gray-900 text-sm md:text-xl px-3 md:px-5 py-2 md:py-4 rounded shadow max-w-[90%] md:max-w-md">
+    + Зберігає тепло <br>  + Захищає від вітру та дощу <br>
+    + Підходить для: альтанок, терас, веранд
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+
+<section class="max-w-3xl mx-auto py-12 px-4 space-y-6">
+  <h2 class="text-3xl font-bold mb-4">Інформація</h2>
+  <p>Компанія спеціалізується на виробництві м’яких вікон та інших виробів із ПВХ плівки, які ідеально підходять для облаштування альтанок, веранд, балконів, лоджій та кав’ярень.</p>
+
+  <img src="images/12.jpg" alt="ПВХ вікна приклад" class="rounded shadow mx-auto max-w-full md:max-w-lg">
+
+  <h3 class="text-2xl font-semibold">Асортимент продукції:</h3>
+  <ul class="list-disc list-inside">
+    <li>м’які вікна ПВХ для альтанок, веранд та терас;</li>
+    <li>штори ПВХ для балконів та лоджій;</li>
+  </ul>
+
+  <h3 class="text-2xl font-semibold">Переваги ПВХ штор:</h3>
+  <ul class="list-disc list-inside">
+    <li>безпечність для дітей;</li>
+    <li>збереження тепла;</li>
+    <li>прозорість як у скла;</li>
+    <li>проста установка.</li>
+  </ul>
+
+  <img src="images/2.jpg" alt="ПВХ штора в альтанці" class="rounded shadow mx-auto max-w-full md:max-w-lg">
+
+  <p>М’які вікна — це інноваційне рішення для створення комфортного простору. Вони не розбиваються, не мають запаху та повністю пропускають денне світло, не викривляючи предмети.</p>
+
+  <p>Наші вироби допомагають створити затишний мікроклімат на відкритих просторах. Закрита тераса з ПВХ шторами ефективно затримує холодне повітря, запобігаючи промерзанню стін будинку.</p>
+
+  <img src="images/3.jpg" alt="Монтаж ПВХ вікон" class="rounded shadow mx-auto max-w-full md:max-w-lg">
+
+  <h3 class="text-2xl font-semibold">Для самостійного заміру необхідно:</h3>
+  <ul class="list-disc list-inside">
+    <li>виміряти ширину і висоту світлових пройомів;</li>
+    <li>заміряти ширину стовпів між пройомами;</li>
+    <li>зробити 3–4 фотографії об’єкта ззовні;</li>
+    <li>визначити матеріал для кріплення (дерево, метал, цегла тощо).</li>
+  </ul>
+
+  <p>Компанія пропонує індивідуальний підхід до кожного замовлення, допомагаючи обрати оптимальне рішення для вашого простору, забезпечуючи комфорт та естетичну привабливість.</p>
+
+  <p class="font-medium text-lg">Оберіть якість та інновації для створення затишного та функціонального простору з м’якими вікнами з ПВХ!</p>
+</section>
+
+
+
+
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+
+<link href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" rel="stylesheet" />
+<section id="gallery" class="max-w-6xl mx-auto py-10 px-4">
+  <h2 class="text-2xl font-semibold mb-6">Галерея робіт</h2>
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+    <a href="images/1.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/1.jpg" alt="Фото 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/2.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/2.jpg" alt="Фото 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/3.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/3.jpg" alt="Фото 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/4.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/4.jpg" alt="Фото 4" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/5.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/5.jpg" alt="Фото 5" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/6.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/6.jpg" alt="Фото 6" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/7.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/7.jpg" alt="Фото 7" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/8.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/8.jpg" alt="Фото 8" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/9.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/9.jpg" alt="Фото 9" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/10.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/10.jpg" alt="Фото 10" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/11.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/11.jpg" alt="Фото 11" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+    <a href="images/12.jpg" class="glightbox" data-gallery="gallery1">
+      <div class="w-full h-[200px] overflow-hidden rounded shadow">
+        <img src="images/12.jpg" alt="Фото 12" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+      </div>
+    </a>
+    
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox' });
+</script>
+
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox' });
+</script>
+
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox' });
+</script>
+
+<script>
+  const lightbox = GLightbox({ selector: '.glightbox' });
+</script>
+
+
+<section id="calculator" class="max-w-2xl mx-auto py-10 px-4">
+  <img src="images/022.jpg" alt="Схема заміру" class="mx-auto mb-6 max-w-md rounded shadow">
+  <h2 class="text-2xl font-semibold mb-4">Калькулятор вартості</h2>
+  <div class="space-y-4">
+    <div class="grid grid-cols-2 gap-4">
+      <input type="number" id="width" step="0.01" placeholder="Ширина (м)" class="border p-2 w-full rounded" required />
+      <input type="number" id="height" step="0.01" placeholder="Висота (м)" class="border p-2 w-full rounded" required />
     </div>
-  </section>
+    <select id="type" class="border p-2 w-full rounded">
+      <option value="550">Прозора штора ПВХ (550 грн/м²)</option>
+      <option value="600">Прозора з кольоровим кантем (600 грн/м²)</option>
+      <option value="700">Тканинна штора (700 грн/м²)</option>
+    </select>
 
-  <section class="max-w-2xl mx-auto py-10 px-4">
-    <h2 class="text-2xl font-semibold mb-4">Залишити заявку</h2>
-    <form id="contactForm" class="space-y-4">
-      <input type="text" id="name" placeholder="Ваше ім’я" class="border p-2 w-full rounded" required />
-      <input type="tel" id="phone" placeholder="Телефон" class="border p-2 w-full rounded" required />
-      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Надіслати</button>
-    </form>
-    <p id="formStatus" class="mt-4"></p>
-  </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label class="block font-medium mb-1">Кріплення зверху:</label>
+        <select id="topMount" class="border p-2 w-full rounded">
+          <option>Намертво</option>
+          <option>Кишеня під обтяжувач</option>
+          <option>Скоба + люверс</option>
+          <option>Поворотна скоба</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-medium mb-1">Кріплення знизу:</label>
+        <select id="bottomMount" class="border p-2 w-full rounded">
+          <option>Намертво</option>
+          <option>Кишеня під обтяжувач</option>
+          <option>Скоба + люверс</option>
+          <option>Поворотна скоба</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-medium mb-1">Кріплення зліва:</label>
+        <select id="leftMount" class="border p-2 w-full rounded">
+          <option>Намертво</option>
+          <option>Кишеня під обтяжувач</option>
+          <option>Скоба + люверс</option>
+          <option>Поворотна скоба</option>
+        </select>
+      </div>
+      <div>
+        <label class="block font-medium mb-1">Кріплення справа:</label>
+        <select id="rightMount" class="border p-2 w-full rounded">
+          <option>Намертво</option>
+          <option>Кишеня під обтяжувач</option>
+          <option>Скоба + люверс</option>
+          <option>Поворотна скоба</option>
+        </select>
+      </div>
+    </div>
 
-  <footer class="bg-gray-100 text-center py-4">
-    <p>&copy; 2024 Майстерня м'яких вікон</p>
-  </footer>
+    <button onclick="calculateNew()" class="bg-blue-600 text-white px-4 py-2 rounded">Розрахувати</button>
+    <p id="newResult" class="text-xl font-medium"></p>
+  </div>
+</section>
+<script>
+  function calculateNew() {
+    const width = parseFloat(document.getElementById("width").value);
+    const height = parseFloat(document.getElementById("height").value);
+    const pricePerM2 = parseFloat(document.getElementById("type").value);
+    const topMount = document.getElementById("topMount").value;
+    const bottomMount = document.getElementById("bottomMount").value;
+    const leftMount = document.getElementById("leftMount").value;
+    const rightMount = document.getElementById("rightMount").value;
 
-  <script>
-    function calculate() {
-      const area = parseFloat(document.getElementById("area").value);
-      const pricePerM2 = 550;
-      if (!isNaN(area)) {
-        const total = area * pricePerM2;
-        document.getElementById("result").innerText = `Орієнтовна вартість: ${total} грн`;
-      } else {
-        document.getElementById("result").innerText = "";
-      }
+    if (!isNaN(width) && !isNaN(height)) {
+      const area = width * height;
+      const total = area * pricePerM2;
+      document.getElementById("newResult").innerText = 
+        `Площа: ${area.toFixed(2)} м² | Вартість: ${total.toFixed(0)} грн
+` +
+        `Кріплення: Верх – ${topMount}, Низ – ${bottomMount}, Ліво – ${leftMount}, Право – ${rightMount}`;
+    } else {
+      document.getElementById("newResult").innerText = "";
     }
+  }
+</script>
 
-    document.getElementById("contactForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const phone = document.getElementById("phone").value;
-      const token = "7632035735:AAEuqNYl2YhTQAwrdH0L9NKnyq3_tudPuA4";
-      const chatId = "947952689";
-      const message = `Нова заявка:%0AІм'я: ${name}%0AТелефон: ${phone}`;
 
-      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`, {
-        method: "GET"
-      }).then(() => {
-        document.getElementById("formStatus").innerText = "Заявку надіслано!";
-        document.getElementById("contactForm").reset();
-      }).catch(() => {
-        document.getElementById("formStatus").innerText = "Помилка надсилання.";
-      });
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const menuBtn = document.getElementById('menu-btn');
+    const nav = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', function () {
+      nav.classList.toggle('hidden');
     });
-  </script>
+  });
+</script>
+
+
+<section id="form" class="max-w-2xl mx-auto py-10 px-4">
+  <h2 class="text-2xl font-semibold mb-4">Залишити заявку</h2>
+  <form id="contactForm" class="space-y-4">
+    <input type="text" id="name" placeholder="Ваше ім’я" class="border p-2 w-full rounded" required />
+    <input type="tel" id="phone" placeholder="Телефон" class="border p-2 w-full rounded" required />
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Надіслати</button>
+  </form>
+  <p id="formStatus" class="mt-4"></p>
+</section>
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const token = "7632035735:AAEuqNYl2YhTQAwrdH0L9NKnyq3_tudPuA4";
+    const chatId = "947952689";
+    const message = `Нова заявка:%0AІм'я: ${name}%0AТелефон: ${phone}`;
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`, {
+      method: "GET"
+    }).then(() => {
+      document.getElementById("formStatus").innerText = "Заявку надіслано!";
+      document.getElementById("contactForm").reset();
+    }).catch(() => {
+      document.getElementById("formStatus").innerText = "Помилка надсилання.";
+    });
+  });
+</script>
+
+<section class="bg-white py-12 px-4 border-t border-gray-200">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-center">Якісні матеріали — запорука довговічності</h2>
+    <p class="text-lg mb-6 text-center">У виробництві м’яких вікон ми використовуємо лише перевірені, сертифіковані матеріали. Вони забезпечують прозорість, еластичність, довговічність та зручність монтажу в будь-яких умовах.</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-gray-50 p-4 rounded shadow">
+        <img src="images/14.jpg" alt="Прозора ПВХ плівка" class="rounded mb-2 w-full h-48 object-cover">
+        <p class="text-sm text-center">Прозора ПВХ плівка — висока прозорість та гнучкість</p>
+      </div>
+      <div class="bg-gray-50 p-4 rounded shadow">
+        <img src="images/11.jpg" alt="Кріплення і фурнітура" class="rounded mb-2 w-full h-48 object-cover">
+        <p class="text-sm text-center">Надійна фурнітура — кнопки, замки, ремені</p>
+      </div>
+      <div class="bg-gray-50 p-4 rounded shadow">
+        <img src="images/13.jpg" alt="Зварювання і шви" class="rounded mb-2 w-full h-48 object-cover">
+        <p class="text-sm text-center">Акуратні шви та міцне зварювання</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contacts" class="bg-gray-100 py-10 px-4">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-2xl font-bold mb-4">Контактна інформація</h2>
+    <p class="text-lg">Адреса: <span class="font-medium">м. Львів, вул. Наукова, 29А</span></p>
+    <p class="text-lg">Телефон: <a href="tel:+380964520200" class="text-blue-600 hover:underline font-medium">+380964520200</a></p>
+  </div>
+</section>
+
+
+<footer id="page-footer" class="bg-gray-100 text-center py-4">
+  <p>&copy; 2025 Майстерня м'яких вікон</p>
+</footer>
+
 </body>
 </html>
