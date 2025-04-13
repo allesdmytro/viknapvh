@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Майстерня м'яких вікон</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <header class="bg-blue-100 py-10 text-center">
+    <h1 class="text-4xl font-bold">Майстерня м'яких вікон</h1>
+    <p class="text-lg mt-2">Захистимо вашу альтанку від дощу і вітру</p>
+  </header>
+
+  <section class="max-w-4xl mx-auto py-10 px-4">
+    <h2 class="text-2xl font-semibold mb-4">Галерея робіт</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <img src="images/1.jpg" alt="Приклад 1" class="rounded shadow">
+      <img src="images/2.jpg" alt="Приклад 2" class="rounded shadow">
+      <img src="images/3.jpg" alt="Приклад 3" class="rounded shadow">
+    </div>
+  </section>
+
+  <section class="max-w-2xl mx-auto py-10 px-4">
+    <h2 class="text-2xl font-semibold mb-4">Калькулятор вартості</h2>
+    <div class="space-y-4">
+      <input type="number" id="area" placeholder="Площа, м²" class="border p-2 w-full rounded" />
+      <button onclick="calculate()" class="bg-blue-600 text-white px-4 py-2 rounded">Розрахувати</button>
+      <p id="result" class="text-xl font-medium"></p>
+    </div>
+  </section>
+
+  <section class="max-w-2xl mx-auto py-10 px-4">
+    <h2 class="text-2xl font-semibold mb-4">Залишити заявку</h2>
+    <form id="contactForm" class="space-y-4">
+      <input type="text" id="name" placeholder="Ваше ім’я" class="border p-2 w-full rounded" required />
+      <input type="tel" id="phone" placeholder="Телефон" class="border p-2 w-full rounded" required />
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded">Надіслати</button>
+    </form>
+    <p id="formStatus" class="mt-4"></p>
+  </section>
+
+  <footer class="bg-gray-100 text-center py-4">
+    <p>&copy; 2024 Майстерня м'яких вікон</p>
+  </footer>
+
+  <script>
+    function calculate() {
+      const area = parseFloat(document.getElementById("area").value);
+      const pricePerM2 = 550;
+      if (!isNaN(area)) {
+        const total = area * pricePerM2;
+        document.getElementById("result").innerText = `Орієнтовна вартість: ${total} грн`;
+      } else {
+        document.getElementById("result").innerText = "";
+      }
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const token = "7632035735:AAEuqNYl2YhTQAwrdH0L9NKnyq3_tudPuA4";
+      const chatId = "947952689";
+      const message = `Нова заявка:%0AІм'я: ${name}%0AТелефон: ${phone}`;
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message}`, {
+        method: "GET"
+      }).then(() => {
+        document.getElementById("formStatus").innerText = "Заявку надіслано!";
+        document.getElementById("contactForm").reset();
+      }).catch(() => {
+        document.getElementById("formStatus").innerText = "Помилка надсилання.";
+      });
+    });
+  </script>
+</body>
+</html>
